@@ -4,9 +4,7 @@ import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:2707";
+import { API_BASE_URL } from "@/utils/api";
 
 function VerifyOTPContent() {
   const router = useRouter();

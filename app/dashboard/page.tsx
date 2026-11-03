@@ -63,14 +63,14 @@ export default function DashboardPage() {
             </span>
             <h1 className="text-3xl font-extrabold">Welcome, {user.userName}!</h1>
             <p className="text-indigo-100 text-sm mt-1">
-              You have successfully authenticated with hashed password verification.
+              You are securely authenticated with JWT & Bcrypt password protection.
             </p>
           </div>
 
           {/* User Details */}
           <div className="p-8">
             <h2 className="text-lg font-bold text-gray-900 mb-4">Account Information</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">User Name</p>
                 <p className="text-base font-semibold text-gray-900 mt-1">{user.userName}</p>
@@ -79,13 +79,6 @@ export default function DashboardPage() {
               <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Email Address</p>
                 <p className="text-base font-semibold text-gray-900 mt-1">{user.email}</p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Assigned Role</p>
-                <span className="inline-block mt-1 px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-100 text-indigo-800">
-                  {user.role}
-                </span>
               </div>
             </div>
 
@@ -107,4 +100,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-

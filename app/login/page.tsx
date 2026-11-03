@@ -5,9 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 import { useAuth } from "@/context/AuthContext";
-
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:2707";
+import { API_BASE_URL } from "@/utils/api";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -39,7 +37,7 @@ export default function LoginPage() {
     } catch (err: any) {
       setError(
         err.response?.data?.message ||
-          "Could not connect to backend server. Make sure it is running on port 2707."
+          "Could not connect to backend server. Make sure the server is reachable."
       );
     } finally {
       setLoading(false);
@@ -81,9 +79,17 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
-              Password
-            </label>
+            <div className="flex justify-between items-center mb-1">
+              <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                Password
+              </label>
+              <Link
+                href="/forgot-password"
+                className="text-xs font-semibold text-indigo-600 hover:text-indigo-500 hover:underline"
+              >
+                Forgot password?
+              </Link>
+            </div>
             <input
               type="password"
               placeholder="••••••••"
@@ -97,7 +103,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 disabled:opacity-50 transition shadow-md hover:shadow-lg active:scale-[0.99] cursor-pointer"
+            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 disabled:opacity-50 transition shadow-md hover:shadow-lg active:scale-[0.99] cursor-pointer mt-2"
           >
             {loading ? "Logging in..." : "Login"}
           </button>

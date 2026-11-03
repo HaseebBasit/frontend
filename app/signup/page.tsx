@@ -4,9 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:2707";
+import { API_BASE_URL } from "@/utils/api";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -14,7 +12,6 @@ export default function SignupPage() {
     userName: "",
     email: "",
     password: "",
-    role: "student",
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -40,7 +37,7 @@ export default function SignupPage() {
     } catch (err: any) {
       setError(
         err.response?.data?.message ||
-          "Could not connect to backend server. Make sure it is running on port 2707."
+          "Could not connect to backend server. Make sure the server is reachable."
       );
     } finally {
       setLoading(false);
@@ -111,24 +108,10 @@ export default function SignupPage() {
             <p className="text-xs text-gray-400 mt-1">Must be at least 6 characters (hashed securely with bcrypt)</p>
           </div>
 
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
-              Select Role
-            </label>
-            <select
-              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
-              value={form.role}
-              onChange={(e) => setForm({ ...form, role: e.target.value })}
-            >
-              <option value="student">Student</option>
-              <option value="trainer">Trainer</option>
-            </select>
-          </div>
-
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 disabled:opacity-50 transition shadow-md hover:shadow-lg active:scale-[0.99] cursor-pointer"
+            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 disabled:opacity-50 transition shadow-md hover:shadow-lg active:scale-[0.99] cursor-pointer mt-2"
           >
             {loading ? "Creating Account..." : "Sign Up"}
           </button>
